@@ -3,7 +3,7 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import { ConfigProvider } from 'antd';
 import theme from '@/theme';
-
+import { Navbar } from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,10 +15,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <StyledComponentsRegistry>
-        <ConfigProvider theme={theme}>
-      <html lang='en'>
-        <body className={inter.className}>{children}</body>
-      </html>
+      <ConfigProvider theme={theme}>
+        <html lang='en'>
+          <body className={`${inter.className}`}>
+            <Navbar />
+            {children}
+          </body>
+        </html>
       </ConfigProvider>
     </StyledComponentsRegistry>
   );

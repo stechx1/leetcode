@@ -69,8 +69,8 @@ const tabs = [
 
 const ProblemsPage = () => {
   return (
-    <div className='container mx-auto p-8'>
-      <hr class='my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50' />
+    <div className='container mx-auto'>
+      <hr class='my-8 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50' />
       <div className='flex gap-3 my-4'>
         {tags.map((tag) => (
           <div key={tag.id} className='flex gap-1'>
