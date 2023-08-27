@@ -1,11 +1,12 @@
 import StyledComponentsRegistry from '@/lib/AntdRegistry';
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Inter, Source_Code_Pro } from 'next/font/google';
 import { ConfigProvider } from 'antd';
 import theme from '@/theme';
 import { Navbar } from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
+const source = Source_Code_Pro({subsets: ['latin']});
 
 export const metadata = {
   title: 'Create Next App',

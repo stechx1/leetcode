@@ -1,74 +1,120 @@
-"use client"
+'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
+import 'allotment/dist/style.css';
+import { Tabs } from 'antd';
+import { Description } from '@/components/Description';
+import { Editorial } from '@/components/Editorial';
+import { Solutions } from '@/components/Solutions';
+import { Submissions } from '@/components/Submissions';
+import { source } from '@/lib/utils/font';
 
-const ProblemPage = ({params}) => {
-  const router = useRouter();
-  const { id } = params;
-
+const ProblemPage = ({ params }) => {
   const problem = {
-    id: 1,
-    title: 'Two Sum',
-    description: 'Given an array of integers...',
-    examples: [
-      { input: '[2,7,11,15], target = 9', output: '[0,1]' },
-      // Add more examples as needed
-    ],
-    similarQuestions: ['3Sum', '4Sum'],
+    id: '1',
+    heading: '1. Two Sum',
+    difficulty: 'Easy',
+    statement: (
+      <div className='space-y-4'>
+        <p>
+          Given an array of integers nums and an integer target, return indices
+          of the two numbers such that they add up to target.
+        </p>
+        <p>
+          You may assume that each input would have exactly one solution, and
+          you may not use the same element twice.
+        </p>
+        <p>You can return the answer in any order.</p>
+      </div>
+    ),
+    examples: (
+      <div className='space-y-2'>
+        <div>
+          <p className='font-bold'>Example 1</p>
+          <div className='flex flex-col '>
+            <p>
+              Input:{' '}
+              <span className={`text-gray-600 ${source.className}`}>
+                nums = [2,7,11,15], target = 9
+              </span>
+            </p>
+            <p>
+              Output:{' '}
+              <span className={`text-gray-600 ${source.className}`}>
+                [0, 1]
+              </span>
+            </p>
+            <p>
+              Explanation:{' '}
+              <span className={`text-gray-600 ${source.className}`}>
+                Because nums[0] + nums[1] === 9, we return [0, 1]
+              </span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <p className='font-bold'>Example 2</p>
+          <div className='flex flex-col '>
+            <p>
+              Input:{' '}
+              <span className={`text-gray-600 ${source.className}`}>
+                nums = [2,7,11,15], target = 9
+              </span>
+            </p>
+            <p>
+              Output:{' '}
+              <span className={`text-gray-600 ${source.className}`}>
+                [0, 1]
+              </span>
+            </p>
+            <p>
+              Explanation:{' '}
+              <span className={`text-gray-600 ${source.className}`}>
+                Because nums[0] + nums[1] === 9, we return [0, 1]
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   };
-
-  const [code, setCode] = useState('');
-
-  const handleRunTests = () => {
-    // Logic to run tests on the provided code
-  };
+  const tabs = [
+    {
+      key: '1',
+      label: 'Description',
+      children: <Description problem={problem} />,
+    },
+    {
+      key: '2',
+      label: 'Editorial',
+      children: <Editorial />,
+    },
+    {
+      key: '3',
+      label: 'Solutions',
+      children: <Solutions />,
+    },
+    {
+      key: '4',
+      label: 'Submissions',
+      children: <Submissions />,
+    },
+  ];
 
   return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-2xl font-semibold mb-4">{problem.title}</h1>
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold">Description:</h2>
-        <p>{problem.description}</p>
+    <div className='container mx-auto pt-8 h-screen'>
+      <div className=' grid grid-cols-2 gap-6'>
+        <div className='bg-[#f3f4f6] px-6 pt-2 rounded'>
+          <Tabs defaultActiveKey='1' items={tabs} />
+        </div>
+        <div height={'90vh'} className=''>
+          <Editor
+            height='90vh'
+            defaultLanguage='javascript'
+            defaultValue='// some comment'
+          />
+        </div>
       </div>
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold">Examples:</h2>
-        <ul>
-          {problem.examples.map((example, index) => (
-            <li key={index}>
-              <p>
-                <strong>Input:</strong> {example.input}
-              </p>
-              <p>
-                <strong>Output:</strong> {example.output}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold">Similar Questions:</h2>
-        <ul>
-          {problem.similarQuestions.map((question, index) => (
-            <li key={index}>{question}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold">Code:</h2>
-        <textarea
-          className="border p-2 w-full h-32"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
-        <button
-          className="bg-blue-500 text-white py-1 px-4 mt-2 rounded"
-          onClick={handleRunTests}
-        >
-          Run Tests
-        </button>
-      </div>
-      {/* Test case section */}
-      {/* You can add your test case interface here */}
     </div>
   );
 };
