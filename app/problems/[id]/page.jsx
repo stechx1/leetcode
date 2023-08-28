@@ -56,10 +56,6 @@ const ProblemPage = ({ params }) => {
       children: (
         <div className='flex flex-col justify-between'>
           <Tabs items={consoleTabs} />
-          {/* <div className='flex gap-2 justify-end'>
-            <Button type='primary'>Run</Button>
-            <Button>Submit</Button>
-          </div> */}
         </div>
       ),
     },
@@ -158,11 +154,11 @@ const ProblemPage = ({ params }) => {
 
   return (
     <div className='container mx-auto pt-8 h-screen'>
-      <div className=' grid grid-cols-2 gap-6'>
+      <div className=' md:grid md:grid-cols-2 gap-6'>
         <div className='bg-[#f3f4f6] px-6 pt-2 rounded'>
           <Tabs defaultActiveKey='1' items={tabs} />
         </div>
-        <div height={'90vh'} className=''>
+        <div className='md:h-[90vh]'>
           <Editor
             height='80vh'
             defaultLanguage='javascript'
@@ -175,7 +171,7 @@ const ProblemPage = ({ params }) => {
                
            };`}
           />
-          <div className='bg-[#f3f4f6] w-full' height='10vh'>
+          <div className='bg-[#f3f4f6] w-full md:h-[10vh]'>
             <Collapse ghost items={items} />
           </div>
         </div>
