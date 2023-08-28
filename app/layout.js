@@ -4,6 +4,7 @@ import { Inter, Source_Code_Pro } from 'next/font/google';
 import { ConfigProvider } from 'antd';
 import theme from '@/theme';
 import { Navbar } from '@/components/Navbar';
+import { MobileNav } from '@/components/MobileNav';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +18,12 @@ export default function RootLayout({ children }) {
     <StyledComponentsRegistry>
       <ConfigProvider theme={theme}>
         <html lang='en'>
+          <head> <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          /></head>
           <body className={`${inter.className}`}>
+            <MobileNav />
             <Navbar />
             {children}
           </body>

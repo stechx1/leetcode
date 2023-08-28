@@ -36,26 +36,24 @@ export const Navbar = () => {
     },
   ];
   return (
-    <div className='flex gap-4  bg-gray-100 py-2'>
-      <div className='container mx-auto flex justify-between items-center'>
-        <img src='/logo.png' alt='logo' />
-        <div className='flex gap-10'>
+    <div className=" gap-4 md:flex hidden bg-gray-100 py-2">
+      <div className="container mx-auto flex justify-between items-center">
+        <img src="/logo.png" alt="logo" />
+        <div className="flex gap-10">
           {navItems.map((item) => (
             <Link
               key={item.id}
               href={item.href}
-              className={`${
-                item.current ? 'font-bold text-blue-500 underline' : ''
-              }`}
+              className={`${item.current ? 'font-bold text-blue-500 underline' : ''}`}
             >
               {item.name}
             </Link>
           ))}
         </div>
 
-        <div className='flex gap-4'>
-          <Button type='primary'>Sign In</Button>
-          <Button type='default'>Sign Up</Button>
+        <div className="flex gap-4">
+          <Button type="primary">Sign In</Button>
+          <Button type="default">Sign Up</Button>
         </div>
       </div>
     </div>
