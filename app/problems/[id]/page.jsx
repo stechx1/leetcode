@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 import 'allotment/dist/style.css';
-import { Tabs } from 'antd';
+import { Button, Tabs } from 'antd';
+import { Collapse } from 'antd';
 import { Description } from '@/components/Description';
 import { Editorial } from '@/components/Editorial';
 import { Solutions } from '@/components/Solutions';
@@ -10,6 +11,60 @@ import { Submissions } from '@/components/Submissions';
 import { source } from '@/lib/utils/font';
 
 const ProblemPage = ({ params }) => {
+  const [loading, setLoading] = useState(false);
+  const handleRunClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  };
+
+  const consoleTabs = [
+    {
+      key: '1',
+      label: 'Test Cases',
+      children: (
+        <div>
+          <p>Test cases would come here</p>
+        </div>
+      ),
+    },
+    {
+      key: '2',
+      label: 'Results',
+      children: (
+        <div>
+          <p>Results would come here</p>
+        </div>
+      ),
+    },
+  ];
+  const items = [
+    {
+      id: '1',
+      label: (
+        <div className='flex justify-between'>
+          <p>{loading ? 'pending...' : 'Test Cases'}</p>
+          <div className='flex gap-2 justify-end'>
+            <Button loading={loading} onClick={handleRunClick} type='primary'>
+              {loading ? 'Running' : 'Run'}
+            </Button>
+            <Button onClick={handleRunClick}>Submit</Button>
+          </div>
+        </div>
+      ),
+      children: (
+        <div className='flex flex-col justify-between'>
+          <Tabs items={consoleTabs} />
+          {/* <div className='flex gap-2 justify-end'>
+            <Button type='primary'>Run</Button>
+            <Button>Submit</Button>
+          </div> */}
+        </div>
+      ),
+    },
+  ];
+
   const problem = {
     id: '1',
     heading: '1. Two Sum',
@@ -109,10 +164,20 @@ const ProblemPage = ({ params }) => {
         </div>
         <div height={'90vh'} className=''>
           <Editor
-            height='90vh'
+            height='80vh'
             defaultLanguage='javascript'
-            defaultValue='// some comment'
+            defaultValue={`/**
+            * @param {number[]} nums
+            * @param {number} target
+            * @return {number[]}
+            */
+           var twoSum = function(nums, target) {
+               
+           };`}
           />
+          <div className='bg-[#f3f4f6] w-full' height='10vh'>
+            <Collapse ghost items={items} />
+          </div>
         </div>
       </div>
     </div>

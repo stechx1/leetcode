@@ -13,7 +13,7 @@ export const Navbar = () => {
     {
       id: '2',
       name: 'Problems',
-      href: '/',
+      href: '/problems',
       current: true,
     },
     {
@@ -41,7 +41,13 @@ export const Navbar = () => {
         <img src='/logo.png' alt='logo' />
         <div className='flex gap-10'>
           {navItems.map((item) => (
-            <Link key={item.id} href={item.href} className={`${item.current? "font-bold text-blue-500 underline":""}`}>
+            <Link
+              key={item.id}
+              href={item.href}
+              className={`${
+                item.current ? 'font-bold text-blue-500 underline' : ''
+              }`}
+            >
               {item.name}
             </Link>
           ))}
